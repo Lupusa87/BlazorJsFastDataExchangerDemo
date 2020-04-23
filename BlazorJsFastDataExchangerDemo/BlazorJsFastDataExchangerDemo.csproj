@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BlazorJsFastDataExchanger\BlazorJsFastDataExchanger\BlazorJsFastDataExchanger.csproj" />
+    <ProjectReference Include="..\..\BlazorWindowHelper\BlazorWindowHelper.csproj" />
   </ItemGroup>
 
 </Project>
