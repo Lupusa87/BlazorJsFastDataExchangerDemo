@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30014.187
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorJsFastDataExchangerDemo", "BlazorJsFastDataExchangerDemo\BlazorJsFastDataExchangerDemo.csproj", "{3BE2D731-03B2-4E89-BACC-1413972095E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorJsFastDataExchanger", "..\BlazorJsFastDataExchanger\BlazorJsFastDataExchanger\BlazorJsFastDataExchanger.csproj", "{BE7903FE-2376-49FA-93C3-5B4690CC9352}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWindowHelper", "..\BlazorWindowHelper\BlazorWindowHelper.csproj", "{C95E3C00-2AD0-466A-92D9-168FCFC777E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorJsFastDataExchanger", "..\BlazorJsFastDataExchanger\BlazorJsFastDataExchanger\BlazorJsFastDataExchanger.csproj", "{0274A692-C1F7-49DB-9994-04B3326F82C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{3BE2D731-03B2-4E89-BACC-1413972095E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BE2D731-03B2-4E89-BACC-1413972095E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BE2D731-03B2-4E89-BACC-1413972095E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE7903FE-2376-49FA-93C3-5B4690CC9352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE7903FE-2376-49FA-93C3-5B4690CC9352}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE7903FE-2376-49FA-93C3-5B4690CC9352}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE7903FE-2376-49FA-93C3-5B4690CC9352}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C95E3C00-2AD0-466A-92D9-168FCFC777E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C95E3C00-2AD0-466A-92D9-168FCFC777E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C95E3C00-2AD0-466A-92D9-168FCFC777E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C95E3C00-2AD0-466A-92D9-168FCFC777E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0274A692-C1F7-49DB-9994-04B3326F82C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0274A692-C1F7-49DB-9994-04B3326F82C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0274A692-C1F7-49DB-9994-04B3326F82C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0274A692-C1F7-49DB-9994-04B3326F82C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
