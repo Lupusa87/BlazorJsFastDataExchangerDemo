@@ -24,20 +24,20 @@ namespace BlazorJsFastDataExchangerDemo
 
        
 
-        internal void ProcessGlobalExchangeData()
+        internal void ProcessGlobalExchangeData(string variableName)
         {
-            _JSRuntime.InvokeVoidAsync("LocalJsFunctions.ProcessGlobalExchangeData");
+            _JSRuntime.InvokeVoidAsync("LocalJsFunctions.ProcessGlobalExchangeData", variableName);
         }
 
 
-        internal ValueTask<bool> SendData(string t)
+        internal ValueTask<bool> SendData(string variableName, string t)
         {
-            return _JSRuntime.InvokeAsync<bool>("LocalJsFunctions.SendData", t);
+            return _JSRuntime.InvokeAsync<bool>("LocalJsFunctions.SendData", variableName, t );
         }
 
-        internal ValueTask<string> ReadData()
+        internal ValueTask<string> ReadData(string variableName)
         {
-            return _JSRuntime.InvokeAsync<string>("LocalJsFunctions.ReadData");
+            return _JSRuntime.InvokeAsync<string>("LocalJsFunctions.ReadData", variableName);
         }
     }
 }

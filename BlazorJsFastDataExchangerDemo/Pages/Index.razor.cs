@@ -32,13 +32,13 @@ namespace BlazorJsFastDataExchangerDemo.Pages
         protected override void OnInitialized()
         {
 
-            JsFastDataExchanger._JSRuntime =jsRuntime;
             _LocalJsInterop = new LocalJsInterop(jsRuntime);
             BWHJsInterop.jsRuntime = jsRuntime;
 
 
 
             JsFastDataExchanger.OnDataReceived = OnDataReceived;
+           
 
             base.OnInitialized();
         }
@@ -48,7 +48,6 @@ namespace BlazorJsFastDataExchangerDemo.Pages
            
             log.Add(data);
             BlazorTimeAnalyzer.LogAll();
-
 
             StateHasChanged();
 
@@ -69,14 +68,14 @@ namespace BlazorJsFastDataExchangerDemo.Pages
 
                 BlazorTimeAnalyzer.Reset();
                 BlazorTimeAnalyzer.Add("A1", MethodBase.GetCurrentMethod());
-                await _LocalJsInterop.SendData(JsMessage);
-
-                //BlazorTimeAnalyzer.Add("A2", MethodBase.GetCurrentMethod());
-                //await _LocalJsInterop.ProcessGlobalExchangeData();
+                await _LocalJsInterop.SendData("myTmpVar1",JsMessage);
+               
+                BlazorTimeAnalyzer.Add("A2", MethodBase.GetCurrentMethod());
+                _LocalJsInterop.ProcessGlobalExchangeData("myTmpVar1");
 
 
                 BlazorTimeAnalyzer.Add("A3", MethodBase.GetCurrentMethod());
-                log.Add(await _LocalJsInterop.ReadData());
+                log.Add(await _LocalJsInterop.ReadData("myTmpVar1"));
 
                 BlazorTimeAnalyzer.LogAll();
 
@@ -109,15 +108,15 @@ namespace BlazorJsFastDataExchangerDemo.Pages
               
                 BlazorTimeAnalyzer.Reset();
                 BlazorTimeAnalyzer.Add("A1", MethodBase.GetCurrentMethod());
-                JsFastDataExchanger.SendData(JsMessage);
+                JsFastDataExchanger.SendData("myTmpVar1",JsMessage);
+             
 
-
-               // BlazorTimeAnalyzer.Add("A2", MethodBase.GetCurrentMethod());
-               // _LocalJsInterop.ProcessGlobalExchangeData();
+                 BlazorTimeAnalyzer.Add("A2", MethodBase.GetCurrentMethod());
+                 _LocalJsInterop.ProcessGlobalExchangeData("myTmpVar1");
 
 
                 BlazorTimeAnalyzer.Add("A3", MethodBase.GetCurrentMethod());
-                JsFastDataExchanger.RequestData();
+                JsFastDataExchanger.RequestData("myTmpVar1");
 
                 
                 JsMessage = string.Empty;
@@ -137,7 +136,7 @@ namespace BlazorJsFastDataExchangerDemo.Pages
         {
             StringBuilder sb = new StringBuilder();
 
-
+       
             for (int i = 0; i < 100000; i++)
             {
                 sb.Append(JsMessage);

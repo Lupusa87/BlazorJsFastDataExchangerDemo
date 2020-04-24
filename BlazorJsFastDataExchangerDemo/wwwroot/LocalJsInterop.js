@@ -3,15 +3,17 @@ window.LocalJsFunctions = {
     Alert: function (message) {
         return alert(message);
     },
-    SendData: function (t) {
-        GlobalExchangeData = t;
-
+    SendData: function (v, t) {
+        this[v] = t;
         return true;
     },
-    ReadData: function () {
-        return GlobalExchangeData;
+    ReadData: function (v) {
+        var result = this[v];
+        //this[v] = null;
+        delete this[v];
+        return result;
     },
-    ProcessGlobalExchangeData: function () {
-        GlobalExchangeData = GlobalExchangeData.split("").reverse().join("");
+    ProcessGlobalExchangeData: function (v) {
+        this[v] = this[v].split("").reverse().join("");
     },
 };
