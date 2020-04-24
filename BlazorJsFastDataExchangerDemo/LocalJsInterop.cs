@@ -15,29 +15,26 @@ namespace BlazorJsFastDataExchangerDemo
             _JSRuntime = jsRuntime;
         }
 
-
         internal ValueTask<string> Alert(string message)
         {
             return _JSRuntime.InvokeAsync<string>(
                 "LocalJsFunctions.Alert", message);
         }
 
-       
-
-        internal void ProcessGlobalExchangeData(string variableName)
+        internal void ProcessData(string variableName)
         {
-            _JSRuntime.InvokeVoidAsync("LocalJsFunctions.ProcessGlobalExchangeData", variableName);
+            _JSRuntime.InvokeVoidAsync("LocalJsFunctions.ProcessData", variableName);
         }
 
 
-        internal ValueTask<bool> SendData(string variableName, string t)
+        internal ValueTask<bool> SetData(string variableName, string t)
         {
-            return _JSRuntime.InvokeAsync<bool>("LocalJsFunctions.SendData", variableName, t );
+            return _JSRuntime.InvokeAsync<bool>("LocalJsFunctions.SetData", variableName, t );
         }
 
-        internal ValueTask<string> ReadData(string variableName)
+        internal ValueTask<string> GetData(string variableName)
         {
-            return _JSRuntime.InvokeAsync<string>("LocalJsFunctions.ReadData", variableName);
+            return _JSRuntime.InvokeAsync<string>("LocalJsFunctions.GetData", variableName);
         }
     }
 }

@@ -36,22 +36,10 @@ namespace BlazorJsFastDataExchangerDemo.Pages
             BWHJsInterop.jsRuntime = jsRuntime;
 
 
-
-            JsFastDataExchanger.OnDataReceived = OnDataReceived;
-           
-
             base.OnInitialized();
         }
 
-        public void OnDataReceived(string data)
-        {
-           
-            log.Add(data);
-            BlazorTimeAnalyzer.LogAll();
 
-            StateHasChanged();
-
-        }
 
         public async void JsSendMessage()
         {
@@ -68,14 +56,14 @@ namespace BlazorJsFastDataExchangerDemo.Pages
 
                 BlazorTimeAnalyzer.Reset();
                 BlazorTimeAnalyzer.Add("A1", MethodBase.GetCurrentMethod());
-                await _LocalJsInterop.SendData("myTmpVar1",JsMessage);
+                await _LocalJsInterop.SetData("myTmpVar1",JsMessage);
                
                 BlazorTimeAnalyzer.Add("A2", MethodBase.GetCurrentMethod());
-                _LocalJsInterop.ProcessGlobalExchangeData("myTmpVar1");
+                _LocalJsInterop.ProcessData("myTmpVar1");
 
 
                 BlazorTimeAnalyzer.Add("A3", MethodBase.GetCurrentMethod());
-                log.Add(await _LocalJsInterop.ReadData("myTmpVar1"));
+                log.Add(await _LocalJsInterop.GetData("myTmpVar1"));
 
                 BlazorTimeAnalyzer.LogAll();
 
@@ -108,17 +96,19 @@ namespace BlazorJsFastDataExchangerDemo.Pages
               
                 BlazorTimeAnalyzer.Reset();
                 BlazorTimeAnalyzer.Add("A1", MethodBase.GetCurrentMethod());
-                JsFastDataExchanger.SendData("myTmpVar1",JsMessage);
+                JsFastDataExchanger.SetData("myTmpVar1",JsMessage);
              
 
                  BlazorTimeAnalyzer.Add("A2", MethodBase.GetCurrentMethod());
-                 _LocalJsInterop.ProcessGlobalExchangeData("myTmpVar1");
+                 _LocalJsInterop.ProcessData("myTmpVar1");
 
 
                 BlazorTimeAnalyzer.Add("A3", MethodBase.GetCurrentMethod());
-                JsFastDataExchanger.RequestData("myTmpVar1");
 
-                
+                log.Add(JsFastDataExchanger.GetData("myTmpVar1"));
+
+                BlazorTimeAnalyzer.LogAll();
+
                 JsMessage = string.Empty;
 
             }

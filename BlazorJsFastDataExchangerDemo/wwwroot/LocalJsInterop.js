@@ -1,19 +1,18 @@
-﻿
-window.LocalJsFunctions = {
+﻿window.LocalJsFunctions = {
     Alert: function (message) {
         return alert(message);
     },
-    SendData: function (v, t) {
+    SetData: function (v, t) {
         this[v] = t;
         return true;
     },
-    ReadData: function (v) {
+    GetData: function (v) {
         var result = this[v];
         //this[v] = null;
         delete this[v];
         return result;
     },
-    ProcessGlobalExchangeData: function (v) {
+    ProcessData: function (v) {
         this[v] = this[v].split("").reverse().join("");
     },
 };
