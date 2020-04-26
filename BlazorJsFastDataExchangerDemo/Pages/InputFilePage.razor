@@ -1,0 +1,47 @@
+﻿@page "/inputfilepage"
+
+
+<h3 style="color:darkred">This is JS Fast Data Exchanger demo</h3>
+<br />
+
+
+<h4>JS Fast Data Exchanger library for blazor is available on <a href="https://www.nuget.org/packages/BlazorJsFastDataExchanger" target="_blank" class="ml-md-auto">nuget</a></h4>
+<br />
+
+
+<h5>This sample loads seleted file into .net memory</h5>
+<h5>Fast button is using low level api for loading file faster</h5>
+<br />
+
+
+<div style="margin:5px">
+    <input type="file" id="fileUpload" />
+
+    <button class="btn btn-primary" style="margin:5px" @onclick="@loadFileRegular" disabled="@IsDisabled">Load file regular</button>
+    <button class="btn btn-primary" style="margin:5px" @onclick="@loadFileFast" disabled="@IsDisabled">Load file fast</button>
+    <button class="btn btn-primary" style="margin:5px" @onclick="@ClearLog">Clear log</button>
+
+
+</div>
+
+
+<br />
+
+
+<span style="margin:5px">Log:</span>
+<br />
+
+
+@if (log.Count > 0)
+{
+    @foreach (var item in log)
+    {
+        <br />
+        <span> @item.Length @LocalFunctions.GetShortenedItem(item)  </span>
+        <br />
+
+    }
+}
+
+
+

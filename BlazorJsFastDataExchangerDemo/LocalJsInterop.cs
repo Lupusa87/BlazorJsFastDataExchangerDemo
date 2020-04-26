@@ -27,6 +27,24 @@ namespace BlazorJsFastDataExchangerDemo
         }
 
 
+        internal async ValueTask<bool> HasFile(string inputFileElementID)
+        {
+            return await _JSRuntime.InvokeAsync<bool>("LocalJsFunctions.HasFile", inputFileElementID);
+
+        }
+
+        internal async ValueTask<bool> ReadFile(string variableName, string inputFileElementID)
+        {
+            return await _JSRuntime.InvokeAsync<bool>("LocalJsFunctions.ReadFile", variableName, inputFileElementID);
+
+        }
+
+        internal async ValueTask<string> GetFile(string variableName, string inputFileElementID)
+        {
+            return await _JSRuntime.InvokeAsync<string>("LocalJsFunctions.GetFile", variableName, inputFileElementID);
+
+        }
+
         internal ValueTask<bool> SetData(string variableName, string t)
         {
             return _JSRuntime.InvokeAsync<bool>("LocalJsFunctions.SetData", variableName, t );

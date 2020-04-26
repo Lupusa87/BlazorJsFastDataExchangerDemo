@@ -19,8 +19,6 @@ namespace BlazorJsFastDataExchangerDemo.Pages
    
         LocalJsInterop _LocalJsInterop;
 
-        protected int TransportCode = 0;
-
         public bool IsDisabled = false;
 
         protected string JsMessage = "fastinterop";
@@ -79,12 +77,9 @@ namespace BlazorJsFastDataExchangerDemo.Pages
 
             StateHasChanged();
         }
-
-
+        
         public async void JsSendMessageFast()
         {
-
-
 
             if (!string.IsNullOrEmpty(JsMessage))
             {
@@ -96,17 +91,16 @@ namespace BlazorJsFastDataExchangerDemo.Pages
               
                 BlazorTimeAnalyzer.Reset();
                 BlazorTimeAnalyzer.Add("A1", MethodBase.GetCurrentMethod());
-                JsFastDataExchanger.SetData("myTmpVar1",JsMessage);
-             
+                JsFastDataExchanger.SetStringData("myTmpVar1", JsMessage);
 
-                 BlazorTimeAnalyzer.Add("A2", MethodBase.GetCurrentMethod());
-                 _LocalJsInterop.ProcessData("myTmpVar1");
+                BlazorTimeAnalyzer.Add("A2", MethodBase.GetCurrentMethod());
+                _LocalJsInterop.ProcessData("myTmpVar1");
 
 
                 BlazorTimeAnalyzer.Add("A3", MethodBase.GetCurrentMethod());
+                log.Add(JsFastDataExchanger.GetStringData("myTmpVar1"));
 
-                log.Add(JsFastDataExchanger.GetData("myTmpVar1"));
-
+              
                 BlazorTimeAnalyzer.LogAll();
 
                 JsMessage = string.Empty;
@@ -126,12 +120,10 @@ namespace BlazorJsFastDataExchangerDemo.Pages
         {
             StringBuilder sb = new StringBuilder();
 
-       
             for (int i = 0; i < 100000; i++)
             {
                 sb.Append(JsMessage);
             }
-
 
             JsMessage = sb.ToString();
            
