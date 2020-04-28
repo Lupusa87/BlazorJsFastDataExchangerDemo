@@ -38,11 +38,8 @@ namespace BlazorJsFastDataExchangerDemo.Pages
         }
 
 
-
         public async void JsSendMessage()
         {
-
-
 
             if (!string.IsNullOrEmpty(JsMessage))
             {

@@ -2,6 +2,9 @@
     const reader = new FileReader();
     return new Promise((resolve, reject) => {
         reader.onload = function () { resolve(reader.result); };
+        reader.onprogress = function (e) {
+            window.BJSFDEJsFunctions.InvokeOnProgressAction("loadprogress," + e.loaded + "," + e.total);
+        };
         reader.onerror = function (err) { reject(err); };
         reader.readAsArrayBuffer(file);
     });
@@ -29,9 +32,10 @@ window.LocalJsFunctions = {
     },
     ReadFile: async function (v, inputFile) {
 
-        var a = await getArrayBufferFromFileAsync(document.getElementById(inputFile).files[0]);
-        window[v] = new Uint8Array(a);
+        window[v] = await getArrayBufferFromFileAsync(document.getElementById(inputFile).files[0]);
        
+        //window.BJSFDEJsFunctions.CallDotNetMethod("a", "a", "a", "a", "a");
+        window.BJSFDEJsFunctions.InvokeOnMessageAction("fileloadingdone");
         return true;
     },
     GetFile: async function (v, inputFile) {

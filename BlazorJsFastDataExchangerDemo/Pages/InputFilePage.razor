@@ -17,12 +17,14 @@
 <div style="margin:5px">
     <input type="file" id="fileUpload" />
 
+    <button class="btn btn-primary" style="margin:5px" @onclick="@ClearLog">Clear log</button>
     <button class="btn btn-primary" style="margin:5px" @onclick="@loadFileRegular" disabled="@IsDisabled">Load file regular</button>
     <button class="btn btn-primary" style="margin:5px" @onclick="@loadFileFast" disabled="@IsDisabled">Load file fast</button>
-    <button class="btn btn-primary" style="margin:5px" @onclick="@ClearLog">Clear log</button>
 
-
+    <span style="margin:5px">@_BinaryInfo.progressInfo</span>
 </div>
+
+
 
 
 <br />
@@ -36,8 +38,7 @@
 {
     @foreach (var item in log)
     {
-        <br />
-        <span> @item.Length @LocalFunctions.GetShortenedItem(item)  </span>
+        <span style="margin:2px">@LocalFunctions.GetShortenedItem(item)</span>
         <br />
 
     }
