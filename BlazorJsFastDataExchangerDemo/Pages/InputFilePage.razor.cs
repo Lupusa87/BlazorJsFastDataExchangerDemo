@@ -26,7 +26,7 @@ namespace BlazorJsFastDataExchangerDemo.Pages
 
         protected List<string> log = new List<string>();
 
-        private BinaryInfo _BinaryInfo = new BinaryInfo("myTmpVar1");
+        private BJSFDEBinaryInfo _BinaryInfo = new BJSFDEBinaryInfo("myTmpVar1");
 
 
 
@@ -34,15 +34,11 @@ namespace BlazorJsFastDataExchangerDemo.Pages
 
         protected override void OnInitialized()
         {
-
             _LocalJsInterop = new LocalJsInterop(jsRuntime);
             BWHJsInterop.jsRuntime = jsRuntime;
 
             JsFastDataExchanger.OnMessage = JsFastDataExchanger_OnMessage;
             JsFastDataExchanger.OnProgress = JsFastDataExchanger_OnProgress;
-
-
-
 
             base.OnInitialized();
         }
@@ -51,9 +47,11 @@ namespace BlazorJsFastDataExchangerDemo.Pages
 
         public void ResetBinaryInfo()
         {
-           _BinaryInfo = new BinaryInfo("myTmpVar1");
-            _BinaryInfo.OnDataRead = _BinaryInfo_OnDataRead;
-            _BinaryInfo.OnFinish = _BinaryInfo_OnFinish;
+            _BinaryInfo = new BJSFDEBinaryInfo("myTmpVar1")
+            {
+                OnDataRead = _BinaryInfo_OnDataRead,
+                OnFinish = _BinaryInfo_OnFinish,
+            };
             log.Clear();
         }
 
@@ -68,19 +66,39 @@ namespace BlazorJsFastDataExchangerDemo.Pages
             StateHasChanged();
         }
 
+        private void _BinaryInfo_OnFinish()
+        {
+            _BinaryInfo.progressInfo = "done";
+            log.Add(".net loaded " + _BinaryInfo.dataLenght + " bytes");
+            log.Add("done");
+            BlazorTimeAnalyzer.LogAll();
+
+            StateHasChanged();
+        }
+
         public async void JsFastDataExchanger_OnMessage(string msg)
         {
-           
 
             if (msg.Equals("fileloadingdone"))
             {
-
                 log.Add("js loaded " + _BinaryInfo.dataLenght + " bytes");
                 await InvokeAsync(StateHasChanged);
 
                 BlazorTimeAnalyzer.Add("reading in .net", MethodBase.GetCurrentMethod());
-                await _BinaryInfo.LoadAsync();
 
+
+                double gb = BJSFDEHelperMethods.ConvertSize(_BinaryInfo.dataLenght, BJSFDEHelperMethods.SizeUnit.gb);
+
+
+                if (gb>1.0)
+                {                    
+                    _BinaryInfo.chunkSize = (int)(_BinaryInfo.dataLenght/50.0);
+                    await _BinaryInfo.LoadByPortionsAsync();
+                }
+                else
+                {
+                    await _BinaryInfo.LoadEntirelyAsync();
+                }
             }
         }
 
@@ -124,15 +142,7 @@ namespace BlazorJsFastDataExchangerDemo.Pages
             }
         }
 
-        private void _BinaryInfo_OnFinish()
-        {
-            _BinaryInfo.progressInfo = "done";
-            log.Add(".net loaded " + _BinaryInfo.dataLenght + " bytes");
-            log.Add("done");
-            BlazorTimeAnalyzer.LogAll();
-
-            StateHasChanged();
-        }
+      
 
         public async void loadFileRegular()
         {
@@ -150,7 +160,7 @@ namespace BlazorJsFastDataExchangerDemo.Pages
                 BlazorTimeAnalyzer.Add("A1", MethodBase.GetCurrentMethod());
 
                 string a = await _LocalJsInterop.GetFile(_BinaryInfo.variableName, "fileUpload");
-
+                log.Add(a);
                 
                 log.Add(".net loaded " + a.Length + " bytes");
                 log.Add("done");
@@ -162,8 +172,6 @@ namespace BlazorJsFastDataExchangerDemo.Pages
             {
                 await _LocalJsInterop.Alert("Please select file");
             }
-
-
 
         }
 

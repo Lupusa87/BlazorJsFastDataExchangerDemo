@@ -17,9 +17,10 @@
 
 <div style="margin:5px">
     <input style="margin:5px;width:250px" @bind="@JsMessage" disabled="@IsDisabled" />
+    <button class="btn btn-primary" style="margin:5px" @onclick="@ClearLog">Clear log</button>
     <button class="btn btn-primary" style="margin:5px" @onclick="@JsSendMessage" disabled="@IsDisabled">Send regular</button>
     <button class="btn btn-primary" style="margin:5px" @onclick="@JsSendMessageFast" disabled="@IsDisabled">Send fast</button>
-    <button class="btn btn-primary" style="margin:5px" @onclick="@ClearLog">Clear log</button>
+
 
 
 </div>
