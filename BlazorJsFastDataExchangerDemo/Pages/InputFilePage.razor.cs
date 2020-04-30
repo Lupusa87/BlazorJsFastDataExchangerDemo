@@ -47,12 +47,15 @@ namespace BlazorJsFastDataExchangerDemo.Pages
 
         public void ResetBinaryInfo()
         {
+
             _BinaryInfo = new BJSFDEBinaryInfo("myTmpVar1")
             {
                 OnDataRead = _BinaryInfo_OnDataRead,
                 OnFinish = _BinaryInfo_OnFinish,
             };
             log.Clear();
+
+            
         }
 
 
