@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWindowHelper", "..\Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorJsFastDataExchanger", "..\BlazorJsFastDataExchanger\BlazorJsFastDataExchanger\BlazorJsFastDataExchanger.csproj", "{0274A692-C1F7-49DB-9994-04B3326F82C1}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCounterHelper", "..\LupusaBlazorDemos\BlazorCounterHelper\BlazorCounterHelper.csproj", "{211B3CB0-5EEE-4011-BBC0-70307F914784}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0274A692-C1F7-49DB-9994-04B3326F82C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0274A692-C1F7-49DB-9994-04B3326F82C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0274A692-C1F7-49DB-9994-04B3326F82C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{211B3CB0-5EEE-4011-BBC0-70307F914784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{211B3CB0-5EEE-4011-BBC0-70307F914784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{211B3CB0-5EEE-4011-BBC0-70307F914784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{211B3CB0-5EEE-4011-BBC0-70307F914784}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
