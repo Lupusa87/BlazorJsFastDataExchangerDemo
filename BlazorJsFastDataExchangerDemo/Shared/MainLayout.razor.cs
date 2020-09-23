@@ -1,4 +1,5 @@
 ﻿using BlazorCounterHelper;
+using BlazorJsFastDataExchanger;
 using BlazorWindowHelper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -24,8 +25,8 @@ namespace BlazorJsFastDataExchangerDemo.Shared
         protected override async Task OnInitializedAsync()
         {
 
-
-            BWHJsInterop.jsRuntime = jsRuntime;
+            JsFastDataExchanger._jsUnmarshalledRuntime = jsRuntime as IJSUnmarshalledRuntime;
+            BWHWindowHelper.jsRuntime = jsRuntime;
 
             CounterHelper.Initialize();
             await CounterHelper.CmdAddCounter(new TSCounter() { Source = navigationManager.Uri, Action = "visit" });

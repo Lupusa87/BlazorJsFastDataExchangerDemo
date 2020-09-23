@@ -35,7 +35,7 @@ namespace BlazorJsFastDataExchangerDemo.Pages
         protected override void OnInitialized()
         {
             _LocalJsInterop = new LocalJsInterop(jsRuntime);
-            BWHJsInterop.jsRuntime = jsRuntime;
+            BWHWindowHelper.jsRuntime = jsRuntime;
 
             JsFastDataExchanger.OnMessage = JsFastDataExchanger_OnMessage;
             JsFastDataExchanger.OnProgress = JsFastDataExchanger_OnProgress;
@@ -74,7 +74,7 @@ namespace BlazorJsFastDataExchangerDemo.Pages
             _BinaryInfo.progressInfo = "done";
             log.Add(".net loaded " + _BinaryInfo.dataLenght + " bytes");
             log.Add("done");
-            BlazorTimeAnalyzer.LogAll();
+            BWHTimeAnalyzer.LogAll();
 
             StateHasChanged();
         }
@@ -87,7 +87,7 @@ namespace BlazorJsFastDataExchangerDemo.Pages
                 log.Add("js loaded " + _BinaryInfo.dataLenght + " bytes");
                 await InvokeAsync(StateHasChanged);
 
-                BlazorTimeAnalyzer.Add("reading in .net", MethodBase.GetCurrentMethod());
+                BWHTimeAnalyzer.Add("reading in .net", MethodBase.GetCurrentMethod());
 
 
                 double gb = BJSFDEHelperMethods.ConvertSize(_BinaryInfo.dataLenght, BJSFDEHelperMethods.SizeUnit.gb);
@@ -154,13 +154,13 @@ namespace BlazorJsFastDataExchangerDemo.Pages
             if (await _LocalJsInterop.HasFile("fileUpload"))
             {
 
-                BlazorTimeAnalyzer.Reset("Regular mode");
+                BWHTimeAnalyzer.Reset("Regular mode");
 
                 log.Add("started");
                 log.Add("js is loading file...");
                 StateHasChanged();
 
-                BlazorTimeAnalyzer.Add("A1", MethodBase.GetCurrentMethod());
+                BWHTimeAnalyzer.Add("A1", MethodBase.GetCurrentMethod());
 
                 string a = await _LocalJsInterop.GetFile(_BinaryInfo.variableName, "fileUpload");
                 log.Add(a);
@@ -168,7 +168,7 @@ namespace BlazorJsFastDataExchangerDemo.Pages
                 log.Add(".net loaded " + a.Length + " bytes");
                 log.Add("done");
 
-                BlazorTimeAnalyzer.LogAll();
+                BWHTimeAnalyzer.LogAll();
                 StateHasChanged();
             }
             else
@@ -188,8 +188,8 @@ namespace BlazorJsFastDataExchangerDemo.Pages
 
                 _BinaryInfo.progressInfo ="started";
                 log.Add("started");
-                BlazorTimeAnalyzer.Reset("Fast mode");
-                BlazorTimeAnalyzer.Add("reading in js", MethodBase.GetCurrentMethod());
+                BWHTimeAnalyzer.Reset("Fast mode");
+                BWHTimeAnalyzer.Add("reading in js", MethodBase.GetCurrentMethod());
 
                 _BinaryInfo.progressInfo = "js is loading file...";
                 log.Add("js is loading file...");
