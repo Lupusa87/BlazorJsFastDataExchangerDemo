@@ -25,7 +25,7 @@ namespace BlazorJsFastDataExchangerDemo.Shared
         protected override async Task OnInitializedAsync()
         {
 
-            JsFastDataExchanger._jsUnmarshalledRuntime = jsRuntime as IJSUnmarshalledRuntime;
+            JsFastDataExchanger.jsRuntime = jsRuntime;
             BWHWindowHelper.jsRuntime = jsRuntime;
 
             CounterHelper.Initialize();
